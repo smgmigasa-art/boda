@@ -28,7 +28,7 @@
             overflow-x: hidden;
         }
 
-        /* --- OVERLAY SIN VIDEO --- */
+        /* --- OVERLAY --- */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg); z-index: 4000;
@@ -94,12 +94,24 @@
             border-bottom: 1px solid var(--primary); margin-bottom: 5px; 
         }
 
-        /* --- SECCIONES GENERALES --- */
+        /* --- SECCIONES --- */
         .section { width: 90%; max-width: 1000px; margin: 60px auto; padding: 20px; text-align: center; }
         .divider { width: 60px; height: 1px; background: var(--primary); margin: 20px auto; position: relative; }
         .divider::after { content: '◈'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--bg); padding: 0 10px; color: var(--primary); font-size: 12px; }
 
         h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 6vw, 45px); color: var(--primary); font-weight: 400; font-style: italic; }
+
+        .info-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            margin-top: 30px;
+        }
+        .info-card {
+            padding: 30px; 
+            border: 1px solid rgba(184,146,106,0.2); 
+            background: white;
+        }
 
         /* --- CRONOLOGÍA --- */
         .timeline-container { 
@@ -113,16 +125,19 @@
         }
 
         /* --- GALERÍA --- */
+        .swiper.mySwiper { padding: 40px 0; }
         .swiper-slide.galeria-slide { 
             width: clamp(240px, 60vw, 320px) !important; 
             height: clamp(350px, 50vh, 450px); 
             border: 6px solid white; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .swiper-slide.galeria-slide img { width: 100%; height: 100%; object-fit: cover; }
 
         /* --- FORMULARIO --- */
         #rsvpForm { width: 100%; max-width: 500px; margin: 0 auto; padding: clamp(20px, 5vw, 40px); background: white; border: 1px solid #eee; border-radius: 8px; }
-        input, select { width: 100%; padding: 15px; margin-top: 15px; border: none; border-bottom: 1px solid #ddd; background: transparent; font-family: inherit; font-size: 14px; }
+        input, select { width: 100%; padding: 15px; margin-top: 15px; border: none; border-bottom: 1px solid #ddd; background: transparent; font-family: inherit; font-size: 14px; outline: none; }
+        input:focus { border-bottom: 1px solid var(--primary); }
         
         .form-btn { 
             width: 100%; padding: 18px; margin-top: 20px; 
@@ -139,7 +154,8 @@
             width: 45px; height: 45px; border-radius: 50%; 
             border: 1px solid var(--primary); display: flex; 
             justify-content: center; align-items: center; 
-            cursor: pointer; z-index: 2000; background: white; 
+            cursor: pointer; z-index: 2000; background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         footer { padding: 40px 20px; text-align: center; background: #f4f1ee; color: var(--primary); font-size: 10px; letter-spacing: 2px; }
@@ -175,9 +191,9 @@
     <section class="hero" id="inicio">
         <div class="swiper heroSwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="Photo-41.jpg"></div>
-                <div class="swiper-slide"><img src="Photo-5.jpg"></div>
-                <div class="swiper-slide"><img src="Photo-50.jpg"></div>
+                <div class="swiper-slide"><img src="Photo-41.jpg" alt="Foto 1"></div>
+                <div class="swiper-slide"><img src="Photo-5.jpg" alt="Foto 2"></div>
+                <div class="swiper-slide"><img src="Photo-50.jpg" alt="Foto 3"></div>
             </div>
         </div>
         <div class="hero-overlay"></div>
@@ -198,14 +214,14 @@
         <p style="letter-spacing: 3px; font-size: 11px;">SAVE THE DATE</p>
         <h2>25 de Julio de 2026</h2>
         <div class="divider"></div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px;">
-    <div style="padding: 30px; border: 1px solid rgba(184,146,106,0.2); background: white;">
-        <p style="font-family: 'Cormorant Garamond'; font-size: 22px;">Ubicación</p>
-        <p style="font-size: 13px; margin: 10px 0;">Wayak Salón, Cancún Quintana Roo</p>
-        <a href="https://www.google.com/maps/search/?api=1&query=45H3%2B54+Cancún+Quintana+Roo" target="_blank" style="color: var(--primary); font-size: 11px; text-decoration: none; border-bottom: 1px solid;">MAPA DE GOOGLE</a>
-    </div>
-</div>
-            <div style="padding: 30px; border: 1px solid rgba(184,146,106,0.2); background: white;">
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <p style="font-family: 'Cormorant Garamond'; font-size: 22px;">Ubicación</p>
+                <p style="font-size: 13px; margin: 10px 0;">Wayak Salón, Cancún Quintana Roo</p>
+                <a href="https://maps.google.com/?q=Wayak+Salon+Cancun" target="_blank" style="color: var(--primary); font-size: 11px; text-decoration: none; border-bottom: 1px solid;">VER MAPA DE GOOGLE</a>
+            </div>
+            <div class="info-card">
                 <p style="font-family: 'Cormorant Garamond'; font-size: 22px;">Dress Code</p>
                 <p style="font-size: 13px; margin: 10px 0;">TRAJE FORMAL</p>
                 <p style="font-size: 11px; opacity: 0.7;">Colores claros bienvenidos</p>
@@ -217,15 +233,15 @@
         <h2>Cronología</h2>
         <div class="divider"></div>
         <div class="timeline-container">
-            <div class="timeline-item"><span style="font-size: 30px;">🕯️</span><p style="font-size: 12px; margin: 5px 0;">12:00 HRS</p><strong>Iglesia</strong></div>
-            <div class="timeline-item"><span style="font-size: 30px;">🏛️</span><p style="font-size: 12px; margin: 5px 0;">18:00 HRS</p><strong>Civil</strong></div>
-            <div class="timeline-item"><span style="font-size: 30px;">🕯️</span><p style="font-size: 12px; margin: 5px 0;">12:00 HRS</p><strong>Boda Maya</strong></div>
-            <div class="timeline-item"><span style="font-size: 30px;">🍷</span><p style="font-size: 12px; margin: 5px 0;">19:30 HRS</p><strong>Cena</strong></div>
+            <div class="timeline-item"><span>🕯️</span><p style="font-size: 12px; margin: 5px 0;">12:00 HRS</p><strong>Iglesia</strong></div>
+            <div class="timeline-item"><span>🏛️</span><p style="font-size: 12px; margin: 5px 0;">18:00 HRS</p><strong>Civil</strong></div>
+            <div class="timeline-item"><span>🪬</span><p style="font-size: 12px; margin: 5px 0;">12:00 HRS</p><strong>Boda Maya</strong></div>
+            <div class="timeline-item"><span>🍷</span><p style="font-size: 12px; margin: 5px 0;">19:30 HRS</p><strong>Cena</strong></div>
         </div>
     </section>
 
     <section class="section reveal" id="galeria">
-        <h2>Galería</h2>
+        <h2>Nuestra Historia</h2>
         <div class="divider"></div>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -233,7 +249,7 @@
                 <div class="swiper-slide galeria-slide"><a href="Photo-78.jpg" data-fancybox="gallery"><img src="Photo-78.jpg"></a></div>
                 <div class="swiper-slide galeria-slide"><a href="Photo-2.jpg" data-fancybox="gallery"><img src="Photo-2.jpg"></a></div>
                 <div class="swiper-slide galeria-slide"><a href="Photo-54.jpg" data-fancybox="gallery"><img src="Photo-54.jpg"></a></div>
-                <div class="swiper-slide galeria-slide"><a href="Photo-62.jpg" data-fancybox="gallery"><img src="Photo-64.jpg"></a></div>
+                <div class="swiper-slide galeria-slide"><a href="Photo-62.jpg" data-fancybox="gallery"><img src="Photo-62.jpg"></a></div>
                 <div class="swiper-slide galeria-slide"><a href="Photo-15.jpg" data-fancybox="gallery"><img src="Photo-15.jpg"></a></div>
                 <div class="swiper-slide galeria-slide"><a href="Photo-44.jpg" data-fancybox="gallery"><img src="Photo-44.jpg"></a></div>
                 <div class="swiper-slide galeria-slide"><a href="Photo-20.jpg" data-fancybox="gallery"><img src="Photo-20.jpg"></a></div>
@@ -244,6 +260,7 @@
 
     <section class="section reveal" id="rsvp">
         <h2>Confirmar Asistencia</h2>
+        <p style="font-size: 12px; margin-bottom: 20px;">Favor de confirmar antes del 1 de julio</p>
         <div class="divider"></div>
         <form id="rsvpForm">
             <input type="text" id="nombre" placeholder="NOMBRE COMPLETO" required>
@@ -270,30 +287,47 @@
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZY7az-CDoA5xXA5ytHUkXIrSSTcFIZgL_JFOzQyZvX_WIlhSamR_I7yNHYZ6tygfbkA/exec';
 
+        // Inicialización al entrar
         function iniciarBoda() {
             const audio = document.getElementById('bgMusic');
-            audio.play().catch(() => {});
+            audio.play().catch(() => console.log("Interacción requerida para audio"));
             
             document.getElementById('overlay').style.opacity = '0';
-            setTimeout(() => document.getElementById('overlay').style.display = 'none', 800);
+            setTimeout(() => {
+                document.getElementById('overlay').style.display = 'none';
+                
+                // Inicializar Carruseles después de quitar el overlay para evitar errores de tamaño
+                new Swiper(".heroSwiper", { 
+                    effect: "fade", 
+                    loop: true, 
+                    autoplay: { delay: 4000, disableOnInteraction: false } 
+                });
 
-            new Swiper(".heroSwiper", { effect: "fade", loop: true, autoplay: { delay: 4000 } });
-            new Swiper(".mySwiper", { 
-                effect: "coverflow", 
-                centeredSlides: true, 
-                slidesPerView: "auto", 
-                loop: true, 
-                coverflowEffect: { rotate: 10, stretch: 0, depth: 100, modifier: 1, slideShadows: false },
-                pagination: { el: ".swiper-pagination" }
-            });
+                new Swiper(".mySwiper", { 
+                    effect: "coverflow", 
+                    centeredSlides: true, 
+                    slidesPerView: "auto", 
+                    loop: true, 
+                    coverflowEffect: { rotate: 10, stretch: 0, depth: 100, modifier: 1, slideShadows: false },
+                    pagination: { el: ".swiper-pagination", clickable: true }
+                });
+            }, 800);
         }
 
+        // Control de Música
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
-            music.paused ? music.play() : music.pause();
-            document.getElementById('musicBtn').innerText = music.paused ? '♪' : 'II';
+            const btn = document.getElementById('musicBtn');
+            if (music.paused) {
+                music.play();
+                btn.innerText = 'II';
+            } else {
+                music.pause();
+                btn.innerText = '♪';
+            }
         }
 
+        // Cuenta Regresiva
         const fechaBoda = new Date("July 25, 2026 17:00:00").getTime();
         setInterval(() => {
             const ahora = new Date().getTime();
@@ -306,15 +340,19 @@
             }
         }, 1000);
 
+        // Animación al hacer Scroll
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // Enviar Formulario a Google Sheets
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             btn.innerText = "ENVIANDO...";
+            btn.disabled = true;
+
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -324,20 +362,26 @@
                     asistencia: document.getElementById('asistencia').value
                 })
             }).then(() => {
-                alert('¡Recibido! Nos vemos pronto.');
-                btn.innerText = "ENVIADO";
+                alert('¡Muchas gracias! Confirmación recibida.');
+                btn.innerText = "¡LISTO!";
                 document.getElementById('rsvpForm').reset();
             }).catch(() => {
-                alert('Hubo un problema. Por favor intenta por WhatsApp.');
-                btn.innerText = "ENVIAR A LISTA";
+                alert('Error al enviar. Por favor usa el botón de WhatsApp.');
+                btn.innerText = "REINTENTAR";
+                btn.disabled = false;
             });
         });
 
+        // Confirmación por WhatsApp
         function confirmarWhatsApp() {
             const nom = document.getElementById('nombre').value || "Invitado";
-            const msg = `¡Hola! Confirmo mi asistencia a la boda de Salvador y Sandy. (${nom}) ❤️`;
+            const num = document.getElementById('personas').value || "1";
+            const msg = `¡Hola! Confirmo mi asistencia para la boda de Salvador y Sandy. Somos ${num} persona(s). Nombre: ${nom} ❤️`;
             window.open(`https://wa.me/529982249951?text=${encodeURIComponent(msg)}`);
         }
+
+        // Fancybox
+        Fancybox.bind("[data-fancybox]", {});
     </script>
 </body>
 </html>
