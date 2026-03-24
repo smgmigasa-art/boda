@@ -27,7 +27,12 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
+        .img-header {
+            width: 350px; /* Ajusta el tamaño a tu gusto */
+            height: auto;
+            border-radius: 0%; /* Opcional: la hace circular */
+            margin-bottom: 20px;
+        }
         /* --- OVERLAY --- */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -175,10 +180,12 @@
 <body>
 
     <div id="overlay">
-        <h2>Salvador & Sandy</h2>
-        <p style="letter-spacing: 4px; font-size: 11px; color: var(--primary);">NUESTRA BODA</p>
-        <button id="btnEntrar" onclick="iniciarBoda()">ABRIR INVITACIÓN</button>
-    </div>
+    <img src="1.1.jpeg" alt="Boda Salvador y Sandy" class="img-header">
+    
+    
+    <p style="letter-spacing: 4px; font-size: 11px; color: var(--primary);">NUESTRA BODA</p>
+    <button id="btnEntrar" onclick="iniciarBoda()">ABRIR INVITACIÓN</button>
+</div>
 
     <nav>
         <a href="#inicio">Inicio</a>
