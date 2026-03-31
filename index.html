@@ -233,11 +233,57 @@
                 <p style="font-family: 'Cormorant Garamond'; font-size: 22px;">Ubicación</p>
                 <p style="font-size: 13px; margin: 10px 0;">Cancún Quintana Roo</p>
             </div>
-            <div class="info-card">
-                <p style="font-family: 'Cormorant Garamond'; font-size: 22px;">Dress Code</p>
-                <p style="font-size: 13px; margin: 10px 0;">TRAJE FORMAL</p>
-                <p style="font-size: 11px; opacity: 0.7;">Colores claros bienvenidos</p>
-            </div>
+            <div class="info-card" style="text-align: center; border: 1px solid #ddd; padding: 20px; border-radius: 12px; max-width: 300px; margin: auto; background: #fff;">
+    <p style="font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 5px;">Código de Vestimenta</p>
+    <p style="font-size: 13px; margin: 5px 0; font-weight: bold;">Traje Formal</p>
+    <p style="font-size: 11px; opacity: 0.7;">Gama de Colores Arena</p>
+    
+    <button onclick="abrirBurbuja()" style="margin-top: 15px; padding: 10px 20px; cursor: pointer; background: #d7c4a5; color: white; border: none; border-radius: 25px; font-family: sans-serif; transition: 0.3s; font-size: 12px; letter-spacing: 1px;">
+        VER PROTOCOLO
+    </button>
+</div>
+
+<div id="burbujaVestimenta" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); backdrop-filter: blur(5px); align-items: center; justify-content: center;">
+    <div style="background-color: #faf9f6; padding: 30px; border-radius: 20px; width: 85%; max-width: 380px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); font-family: 'Cormorant Garamond', serif;">
+        
+        <h2 style="font-size: 24px; color: #8d7a5d; margin-top: 0;">Protocolo de Color</h2>
+        <p style="font-size: 14px; color: #666; font-family: sans-serif; margin-bottom: 20px;">Agradecemos seguir nuestra gama de colores arena:</p>
+
+        <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 25px;">
+            <div title="Crema" style="width: 45px; height: 45px; border-radius: 50%; background: #f5f5dc; border: 1px solid #e0e0d0;"></div>
+            <div title="Arena Claro" style="width: 45px; height: 45px; border-radius: 50%; background: #ece2c6; border: 1px solid #dcd2b6;"></div>
+            <div title="Beige" style="width: 45px; height: 45px; border-radius: 50%; background: #d2b48c; border: 1px solid #c2a47c;"></div>
+            <div title="Arena Tostada" style="width: 45px; height: 45px; border-radius: 50%; background: #c2b280; border: 1px solid #b2a270;"></div>
+            <div title="Khaki" style="width: 45px; height: 45px; border-radius: 50%; background: #c5a059; border: 1px solid #b59049;"></div>
+        </div>
+
+        <div style="text-align: left; font-family: sans-serif; line-height: 1.6; border-top: 1px solid #eee; pt: 15px;">
+            <p style="margin: 10px 0;"><strong style="color: #8d7a5d;">• HOMBRES:</strong> Traje formal o Guayabera. Pantalón en tonos beige o arena. Evitar color negro.</p>
+            <p style="margin: 10px 0;"><strong style="color: #8d7a5d;">• MUJERES:</strong> Vestido largo o midi. Telas ligeras y colores de la gama mostrada Evitar color blanco.</p>
+        </div>
+
+        <button onclick="cerrarBurbuja()" style="margin-top: 25px; padding: 12px; width: 100%; background: #8d7a5d; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: sans-serif; font-weight: bold;">Cerrar</button>
+    </div>
+</div>
+
+<script>
+    const burbuja = document.getElementById('burbujaVestimenta');
+
+    function abrirBurbuja() {
+        burbuja.style.display = 'flex';
+    }
+
+    function cerrarBurbuja() {
+        burbuja.style.display = 'none';
+    }
+
+    // Cerrar al hacer clic fuera del contenido
+    window.onclick = function(event) {
+        if (event.target == burbuja) {
+            cerrarBurbuja();
+        }
+    }
+</script>
         </div>
     </section>
 
