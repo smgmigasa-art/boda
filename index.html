@@ -176,18 +176,26 @@
         }
         .swiper-pagination-bullet-active { background: var(--primary) !important; }
 
-        /* --- FORMULARIO --- */
-        #rsvpForm { width: 100%; max-width: 500px; margin: 0 auto; padding: 30px; background: white; border: 1px solid #eee; border-radius: 8px; }
-        input, select { width: 100%; padding: 15px; margin-top: 15px; border: none; border-bottom: 1px solid #ddd; background: transparent; font-family: inherit; font-size: 14px; outline: none; }
-        input:focus { border-bottom: 1px solid var(--primary); }
+        /* --- FORMULARIO / RSVP --- */
+        .rsvp-container { 
+            width: 100%; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            padding: 30px; 
+            background: white; 
+            border: 1px solid #eee; 
+            border-radius: 8px; 
+            text-align: center;
+        }
         .form-btn { 
             width: 100%; padding: 18px; margin-top: 20px; 
             border: 1px solid var(--primary); background: transparent; 
             color: var(--primary); cursor: pointer; text-transform: uppercase; 
             font-size: 12px; letter-spacing: 2px; transition: 0.4s; 
+            text-decoration: none; display: inline-block;
         }
         .form-btn:hover { background: var(--primary); color: white; }
-        .whatsapp { background: #25D366 !important; border-color: #25D366 !important; color: white !important; }
+        .whatsapp { background: #25D366 !important; border-color: #25D366 !important; color: white !important; margin-top: 10px; }
 
         /* --- ELEMENTOS FLOTANTES --- */
         .music-bubble { 
@@ -388,18 +396,18 @@
 
     <section class="section reveal" id="rsvp">
         <h2>Confirmar Asistencia</h2>
-        <p style="font-size: 12px; margin-bottom: 20px;">Favor de confirmar antes del 1 de julio</p>
+        <p style="font-size: 12px; margin-bottom: 20px;">Por favor, ayúdanos con tu confirmación</p>
         <div class="divider"></div>
-        <form id="rsvpForm">
-            <input type="text" id="nombre" placeholder="NOMBRE COMPLETO" required>
-            <input type="number" id="personas" placeholder="Nº DE INVITADOS" min="1" required>
-            <select id="asistencia">
-                <option value="Si">SÍ, ASISTIRÉ</option>
-                <option value="No">NO PODRÉ ASISTIR</option>
-            </select>
-            <button type="submit" class="form-btn" id="submitBtn">Confirmar Asistencia</button>
-            <button type="button" class="form-btn whatsapp" onclick="confirmarWhatsApp()">WHATSAPP DIRECTO</button>
-        </form>
+        
+        <div class="rsvp-container">
+            <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Presiona el botón para abrir el formulario de confirmación:</p>
+            <a href="https://script.google.com/macros/s/AKfycbxu3xCSf3OCkSs7OaWcALjZolZQ3lIzW7giKSFxRd4jcitp8feGyIidq4DVX37oX4xQ/exec" 
+               target="_blank" 
+               class="form-btn">
+               Abrir Formulario de Confirmación
+            </a>
+            
+        </div>
     </section>
 
     <div class="music-bubble" id="musicBtn" onclick="toggleMusic()">♪</div>
@@ -413,8 +421,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZY7az-CDoA5xXA5ytHUkXIrSSTcFIZgL_JFOzQyZvX_WIlhSamR_I7yNHYZ6tygfbkA/exec';
-
         function iniciarBoda() {
             const audio = document.getElementById('bgMusic');
             audio.play().catch(() => console.log("Audio espera clic"));
@@ -453,46 +459,14 @@
             }
         }, 1000);
 
-        // Funciones Modal Vestimenta
+        // Funciones Modales
         function abrirBurbuja() { document.getElementById('burbujaVestimenta').style.display = 'flex'; }
         function cerrarBurbuja() { document.getElementById('burbujaVestimenta').style.display = 'none'; }
         function cerrarBurbujaExterno(e) { if(e.target.id === 'burbujaVestimenta') cerrarBurbuja(); }
 
-        // FUNCIONES MODAL ITINERARIO
         function abrirItinerario() { document.getElementById('modalItinerario').style.display = 'flex'; }
         function cerrarItinerario() { document.getElementById('modalItinerario').style.display = 'none'; }
         function cerrarItinerarioExterno(e) { if(e.target.id === 'modalItinerario') cerrarItinerario(); }
-
-        // RSVP Script
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.innerText = "ENVIANDO...";
-            btn.disabled = true;
-            fetch(SCRIPT_URL, {
-                method: 'POST', mode: 'no-cors',
-                body: JSON.stringify({
-                    nombre: document.getElementById('nombre').value,
-                    personas: document.getElementById('personas').value,
-                    asistencia: document.getElementById('asistencia').value
-                })
-            }).then(() => {
-                alert('¡Muchas gracias! Confirmación recibida.');
-                btn.innerText = "¡LISTO!";
-                document.getElementById('rsvpForm').reset();
-            }).catch(() => {
-                alert('Error al enviar. Intenta por WhatsApp.');
-                btn.innerText = "REINTENTAR";
-                btn.disabled = false;
-            });
-        });
-
-        function confirmarWhatsApp() {
-            const nom = document.getElementById('nombre').value || "Invitado";
-            const num = document.getElementById('personas').value || "1";
-            const msg = `¡Hola! Confirmo mi asistencia para la boda de Salvador y Sandy. Somos ${num} persona(s). Nombre: ${nom} ❤️`;
-            window.open(`https://wa.me/529982249951?text=${encodeURIComponent(msg)}`);
-        }
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
