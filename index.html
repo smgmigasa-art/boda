@@ -388,21 +388,31 @@
         </div>
     </section>
 
-    <section class="section reveal" id="rsvp">
-        <h2>Confirmar Asistencia</h2>
-        <p style="font-size: 12px; margin-bottom: 20px;">Por favor, ayúdanos con tu confirmación</p>
-        <div class="divider"></div>
-        
-        <div class="rsvp-container">
-            <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Presiona el botón para abrir el formulario de confirmación:</p>
-            <a href="https://script.google.com/macros/s/AKfycbw97tYFD37hSm0tcBh_Tkfp8HiSj6y1kauWSPgRN9YWByRThQJB98M5Esfwc64NmC3p/exec" 
-               target="_blank" 
-               class="form-btn">
-               Abrir Formulario de Confirmación
-            </a>
-            
+<section class="section reveal" id="rsvp">
+    <h2>Confirmar Asistencia</h2>
+    <p style="font-size: 12px; margin-bottom: 20px;">Por favor, ayúdanos con tu confirmación</p>
+    <div class="divider"></div>
+    
+    <div class="rsvp-container">
+        <div id="countdown-container" style="margin-bottom: 20px; font-weight: bold; color: black;">
+            <p style="font-size: 14px; color: #666;">Tiempo restante para confirmar:</p>
+            <div id="timer" style="font-size: 20px;">Cargando contador...</div>
         </div>
-    </section>
+
+        <p id="rsvp-msg" style="font-size: 14px; color: #666; margin-bottom: 10px;">Presiona el botón para abrir el formulario de confirmación:</p>
+        
+        <a href="https://script.google.com/macros/s/AKfycbw97tYFD37hSm0tcBh_Tkfp8HiSj6y1kauWSPgRN9YWByRThQJB98M5Esfwc64NmC3p/exec" 
+           target="_blank" 
+           class="form-btn" 
+           id="rsvp-button">
+           Abrir Formulario de Confirmación
+        </a>
+        
+        <p id="deadline-message" style="display: none; color: black; font-weight: bold;">
+            El plazo para confirmar ha finalizado.
+        </p>
+    </div>
+</section>
 
     <div class="music-bubble" id="musicBtn" onclick="toggleMusic()">♪</div>
     <audio id="bgMusic" loop>
@@ -452,6 +462,37 @@
                 document.getElementById("segundos").innerText = Math.floor((diff % (1000 * 60)) / 1000);
             }
         }, 1000);
+
+        // Configura la fecha límite: 1 de Julio de 2026 a las 00:00:00
+    const deadline = new Date("July 1, 2026 00:00:00").getTime();
+
+    const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = deadline - now;
+
+        // Cálculos de tiempo para días, horas, minutos y segundos
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Mostramos el resultado en el elemento con id="timer"
+        document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        // Si la cuenta regresiva termina
+        if (distance < 0) {
+            clearInterval(x);
+            // Ocultar elementos
+            document.getElementById("timer").innerHTML = "PLAZO CERRADO";
+            document.getElementById("rsvp-button").style.display = "none";
+            document.getElementById("rsvp-msg").style.display = "none";
+            document.getElementById("countdown-container").style.display = "none";
+            
+            // Mostrar mensaje de finalización
+            document.getElementById("deadline-message").style.display = "block";
+        }
+    }, 1000);
 
         // Funciones Modales
         function abrirBurbuja() { document.getElementById('burbujaVestimenta').style.display = 'flex'; }
