@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta property="og:title" content="Boda Salvador & Sandy"><meta property="og:description" content="¡Acompáñanos a celebrar nuestro gran día! 25.07.26">
-    <meta property="og:image" content="https://inivtacionsalvadorysandy.vercel.app/1.1.jpeg">
-
-    <meta property="og:url" content="https://inivtacionsalvadorysandy.vercel.app" />
-    <meta property="og:type" content="website" />
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Salvador & Sandy | Nuestra Boda</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Montserrat:wght@200;300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta property="og:title" content="Boda Salvador & Sandy">
+    <meta property="og:description" content="¡Acompáñanos a celebrar nuestro gran día! 25.07.26">
+    <meta property="og:image" content="https://inivtacionsalvadorysandy.vercel.app/1.1.jpeg">
+    <meta property="og:url" content="https://inivtacionsalvadorysandy.vercel.app" />
+    <meta property="og:type" content="website" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Montserrat:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
     <style>
         :root {
             --primary: #b8926a; 
+            --primary-light: #d4b99a;
             --bg: #faf9f6;      
             --text: #4a4a4a;
             --accent: #8d7a5d;
@@ -29,6 +31,7 @@
         body { 
             font-family: 'Montserrat', sans-serif; 
             background-color: var(--bg); 
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
             color: var(--text); 
             line-height: 1.6;
             overflow-x: hidden;
@@ -37,16 +40,16 @@
         /* --- OVERLAY --- */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg); z-index: 4000;
+            background: var(--bg); z-index: 5000;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 0.8s ease;
             padding: 20px;
         }
         .img-header {
-            width: 350px;
-            max-width: 80%;
-            height: auto;
-            margin-bottom: 20px;
+            width: 320px; max-width: 80%; height: auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            border: 4px solid white;
         }
 
         #btnEntrar {
@@ -59,16 +62,16 @@
         /* --- NAVEGACIÓN --- */
         nav { 
             position: fixed; top: 0; width: 100%; 
-            background: rgba(250,249,246,0.95); 
+            background: rgba(250,249,246,0.95); backdrop-filter: blur(5px);
             display: flex; justify-content: center; align-items: center;
             gap: 15px; padding: 12px; z-index: 1000; 
-            border-bottom: 1px solid rgba(184,146,106,0.2);
+            border-bottom: 1px solid rgba(184,146,106,0.1);
             flex-wrap: wrap;
         }
         nav a { 
             text-decoration: none; color: var(--primary); 
             font-size: clamp(9px, 2vw, 11px); 
-            letter-spacing: 1px; text-transform: uppercase; 
+            letter-spacing: 1px; text-transform: uppercase; font-weight: 500;
         }
 
         /* --- HERO --- */
@@ -79,147 +82,95 @@
         }
         .heroSwiper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .heroSwiper .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.25); z-index: 2; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 2; }
         
         .hero-box { position: relative; z-index: 3; padding: 20px; width: 90%; max-width: 800px; color: white; }
         .hero h1 { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: clamp(40px, 10vw, 90px); 
-            font-weight: 300; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+            font-size: clamp(45px, 10vw, 90px); 
+            font-weight: 300; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); 
         }
-        .hero p { font-size: clamp(10px, 3vw, 14px); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
+        .hero p { font-size: clamp(10px, 3vw, 13px); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
 
-        /* --- COUNTDOWN --- */
-        .countdown { display: flex; gap: clamp(10px, 4vw, 25px); margin-top: 20px; justify-content: center; }
+        /* --- COUNTDOWN HERO --- */
+        .countdown { display: flex; gap: clamp(10px, 4vw, 25px); margin-top: 30px; justify-content: center; }
         .countdown div { font-size: 10px; letter-spacing: 1px; }
         .countdown span { 
-            font-size: clamp(20px, 5vw, 30px); 
+            font-size: clamp(20px, 5vw, 35px); 
             display: block; font-family: 'Cormorant Garamond', serif; 
-            border-bottom: 1px solid var(--primary); margin-bottom: 5px; 
+            border-bottom: 1px solid rgba(255,255,255,0.5); margin-bottom: 5px; padding-bottom: 5px;
         }
 
         /* --- SECCIONES --- */
-        .section { width: 90%; max-width: 1000px; margin: 60px auto; padding: 20px; text-align: center; }
+        .section { width: 90%; max-width: 1000px; margin: 80px auto; padding: 20px; text-align: center; }
         .divider { width: 60px; height: 1px; background: var(--primary); margin: 25px auto; position: relative; }
         .divider::after { content: '◈'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--bg); padding: 0 10px; color: var(--primary); font-size: 12px; }
 
         h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 6vw, 45px); color: var(--primary); font-weight: 400; font-style: italic; margin-bottom: 10px; }
 
-        /* --- FAMILIA --- */
-        .family-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; margin-top: 30px; 
-        }
-        .family-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--primary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-
         /* --- INFO CARDS --- */
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
-        .info-card { padding: 30px; border: 1px solid rgba(184,146,106,0.2); background: white; }
+        .info-card { padding: 40px 30px; border: 1px solid rgba(184,146,106,0.15); background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.02); transition: 0.3s; }
+        .info-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .info-card i { font-size: 24px; color: var(--primary); margin-bottom: 15px; }
 
-        /* --- CRONOLOGÍA --- */
-        .timeline-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 0; margin-top: 40px; 
-        }
-        .timeline-item { 
-            padding: 30px 15px; border: 1px solid rgba(184,146,106,0.3); 
-            display: flex; flex-direction: column; align-items: center; 
-        }
-        .timeline-item span { font-size: 28px; margin-bottom: 10px; }
+        /* --- TIMELINE (Cronología) --- */
+        .timeline-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 40px; }
+        .timeline-item { padding: 30px 15px; background: white; border: 1px solid rgba(184,146,106,0.1); border-radius: 4px; }
+        .timeline-item span { font-size: 32px; margin-bottom: 15px; display: block; }
 
-        /* --- MODAL ITINERARIO --- */
-        #modalItinerario { 
+        /* --- MODALES (Tus originales mejorados) --- */
+        #modalItinerario, #burbujaVestimenta { 
             display: none; position: fixed; z-index: 9999; left: 0; top: 0; 
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); 
             backdrop-filter: blur(8px); align-items: center; justify-content: center; 
         }
         .itinerario-content {
-            background-color: var(--bg);
-            padding: 40px 20px;
-            border-radius: 4px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            border: 1px solid var(--primary);
+            background-color: var(--bg); padding: 40px 25px;
+            width: 90%; max-width: 450px; max-height: 85vh;
+            overflow-y: auto; position: relative; border: 1px solid var(--primary);
         }
         .itinerario-list { list-style: none; padding: 0; margin-top: 20px; }
         .itinerario-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(184,146,106,0.1);
-            font-size: 13px;
+            display: flex; justify-content: space-between;
+            padding: 12px 0; border-bottom: 1px solid rgba(184,146,106,0.1); font-size: 13px;
         }
         .itinerario-list li span:first-child { font-weight: bold; color: var(--primary); min-width: 80px; }
-        .itinerario-list li span:last-child { text-align: right; flex-grow: 1; }
 
         /* --- GALERÍA --- */
-        .swiper.mySwiper { padding: 40px 0 60px 0; width: 100%; }
-        .galeria-slide { 
-            width: 280px !important; 
-            height: 400px !important; 
-            background: #fff;
-            padding: 10px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-radius: 4px;
-        }
-        .galeria-slide img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            border-radius: 2px;
-        }
-        .swiper-pagination-bullet-active { background: var(--primary) !important; }
+        .galeria-slide { width: 280px !important; height: 400px !important; background: #fff; padding: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .galeria-slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- FORMULARIO / RSVP --- */
+        /* --- RSVP CONTAINER --- */
         .rsvp-container { 
-            width: 100%; 
-            max-width: 500px; 
-            margin: 0 auto; 
-            padding: 30px; 
-            background: white; 
-            border: 1px solid #eee; 
-            border-radius: 8px; 
-            text-align: center;
+            width: 100%; max-width: 500px; margin: 0 auto; padding: 40px 30px; 
+            background: white; border: 1px solid rgba(184,146,106,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center;
         }
         .form-btn { 
             width: 100%; padding: 18px; margin-top: 20px; 
             border: 1px solid var(--primary); background: transparent; 
             color: var(--primary); cursor: pointer; text-transform: uppercase; 
-            font-size: 12px; letter-spacing: 2px; transition: 0.4s; 
-            text-decoration: none; display: inline-block;
+            font-size: 12px; letter-spacing: 2px; transition: 0.4s; text-decoration: none; display: inline-block;
         }
         .form-btn:hover { background: var(--primary); color: white; }
-        .whatsapp { background: #25D366 !important; border-color: #25D366 !important; color: white !important; margin-top: 10px; }
 
         /* --- ELEMENTOS FLOTANTES --- */
         .music-bubble { 
-            position: fixed; bottom: 20px; left: 20px; 
-            width: 45px; height: 45px; border-radius: 50%; 
+            position: fixed; bottom: 25px; left: 25px; 
+            width: 50px; height: 50px; border-radius: 50%; 
             border: 1px solid var(--primary); display: flex; 
             justify-content: center; align-items: center; 
             cursor: pointer; z-index: 2000; background: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--primary);
         }
 
-        #burbujaVestimenta { 
-            display: none; position: fixed; z-index: 9999; left: 0; top: 0; 
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); 
-            backdrop-filter: blur(5px); align-items: center; justify-content: center; 
-        }
-
-        footer { padding: 40px 20px; text-align: center; background: #f4f1ee; color: var(--primary); font-size: 10px; letter-spacing: 2px; }
-
-        .reveal { opacity: 0; transform: translateY(20px); transition: 1s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        footer { padding: 60px 20px; text-align: center; background: #f4f1ee; color: var(--primary); font-size: 11px; letter-spacing: 2px; }
+
         @media (max-width: 480px) {
-            .galeria-slide { width: 240px !important; height: 340px !important; }
+            .galeria-slide { width: 250px !important; height: 350px !important; }
         }
     </style>
 </head>
@@ -255,7 +206,7 @@
         <div class="hero-box reveal">
             <p>Bienvenidos a la boda de</p>
             <h1>Salvador & Sandy</h1>
-            <div class="divider"></div>
+            <div class="divider" style="background:white"></div>
             <div class="countdown">
                 <div><span id="dias">0</span>DÍAS</div>
                 <div><span id="horas">0</span>HORAS</div>
@@ -269,15 +220,14 @@
         <p style="letter-spacing: 3px; font-size: 11px; text-transform: uppercase; color: var(--accent);">Con la bendición de Dios y nuestros padres</p>
         <h2>Nuestra Familia</h2>
         <div class="divider"></div>
-
-        <div class="family-grid">
-            <div class="family-group">
-                <h3 class="family-title">Padres de la Novia</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 30px;">
+            <div>
+                <h3 style="font-family: 'Cormorant Garamond'; color: var(--primary); font-size: 22px; margin-bottom: 10px;">PADRES DE LA NOVIA</h3>
                 <p>Fidel Hernández Ramos</p>
                 <p>María Elena Alvarez Geronimo</p>
             </div>
-            <div class="family-group">
-                <h3 class="family-title">Padres del Novio</h3>
+            <div>
+                <h3 style="font-family: 'Cormorant Garamond'; color: var(--primary); font-size: 22px; margin-bottom: 10px;">PADRES DEL NOVIO</h3>
                 <p>Jacinto Miranda Gonzalez</p>
                 <p>Rosalía Gallegos Cruz</p>
             </div>
@@ -288,36 +238,36 @@
         <p style="letter-spacing: 3px; font-size: 11px;">SAVE THE DATE</p>
         <h2>25 de Julio de 2026</h2>
         <div class="divider"></div>
-        
         <div class="info-grid">
             <div class="info-card">
-                <p style="font-family: 'Cormorant Garamond'; font-size: 22px; color: var(--primary);">Ubicación</p>
-                <p style="font-size: 13px; margin: 10px 0;">Cancún, Quintana Roo</p>
+                <i class="fa-solid fa-location-dot"></i>
+                <h3 style="font-family: 'Cormorant Garamond'; font-size: 22px; color: var(--primary);">Ubicación</h3>
+                <p style="font-size: 14px; margin: 10px 0;">Cancún, Quintana Roo</p>
             </div>
             <div class="info-card">
-                <p style="font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--primary);">Código de Vestimenta</p>
-                <p style="font-size: 13px; font-weight: bold; margin-bottom: 10px;">Traje Formal / Colores Arena</p>
-                <button onclick="abrirBurbuja()" style="padding: 10px 20px; cursor: pointer; background: var(--primary); color: white; border: none; border-radius: 25px; font-size: 11px;">VER PROTOCOLO</button>
+                <i class="fa-solid fa-user-tie"></i>
+                <h3 style="font-family: 'Cormorant Garamond'; font-size: 22px; color: var(--primary);">Vestimenta</h3>
+                <p style="font-size: 13px; font-weight: bold; margin-bottom: 15px;">Traje Formal / Colores Arena</p>
+                <button onclick="abrirBurbuja()" style="padding: 10px 20px; cursor: pointer; background: var(--primary); color: white; border: none; border-radius: 25px; font-size: 10px; letter-spacing: 1px;">VER PROTOCOLO</button>
             </div>
         </div>
     </section>
 
     <div id="burbujaVestimenta" onclick="cerrarBurbujaExterno(event)">
-        <div style="background-color: #faf9f6; padding: 30px; border-radius: 20px; width: 85%; max-width: 380px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
-            <h2 style="font-size: 24px; color: var(--accent); margin-bottom: 10px;">Protocolo de Color</h2>
+        <div style="background-color: #faf9f6; padding: 40px 30px; border-radius: 8px; width: 85%; max-width: 400px; text-align: center; border: 1px solid var(--primary);">
+            <h2 style="font-size: 28px; color: var(--accent);">Protocolo de Color</h2>
             <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Nos encantaría que nos acompañen con esta gama:</p>
-            <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: #f5f5dc; border: 1px solid #ddd;"></div>
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: #ece2c6; border: 1px solid #ddd;"></div>
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: #d2b48c; border: 1px solid #ddd;"></div>
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: #c2b280; border: 1px solid #ddd;"></div>
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: #c5a059; border: 1px solid #ddd;"></div>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 25px;">
+                <div style="width: 35px; height: 35px; border-radius: 50%; background: #f5f5dc; border: 1px solid #ddd;"></div>
+                <div style="width: 35px; height: 35px; border-radius: 50%; background: #ece2c6; border: 1px solid #ddd;"></div>
+                <div style="width: 35px; height: 35px; border-radius: 50%; background: #d2b48c; border: 1px solid #ddd;"></div>
+                <div style="width: 35px; height: 35px; border-radius: 50%; background: #c2b280; border: 1px solid #ddd;"></div>
             </div>
-            <div style="text-align: left; font-size: 13px; line-height: 1.5; border-top: 1px solid #eee; padding-top: 15px;">
+            <div style="text-align: left; font-size: 13px; line-height: 1.6; border-top: 1px solid #eee; padding-top: 20px;">
                 <p><strong>• HOMBRES:</strong> Traje formal o Guayabera. Pantalón beige/arena. Evitar negro.</p>
                 <p style="margin-top: 8px;"><strong>• MUJERES:</strong> Vestido largo o midi. Evitar color blanco.</p>
             </div>
-            <button onclick="cerrarBurbuja()" style="margin-top: 20px; padding: 12px; width: 100%; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Cerrar</button>
+            <button onclick="cerrarBurbuja()" style="margin-top: 25px; padding: 12px; width: 100%; background: var(--accent); color: white; border: none; cursor: pointer; font-weight: bold; letter-spacing: 1px;">CERRAR</button>
         </div>
     </div>
 
@@ -328,20 +278,18 @@
             <div class="timeline-item">
                 <span>🕯️</span>
                 <p style="font-size: 11px; color: var(--accent);">12:00 HRS</p>
-                <strong>Iglesia</strong>
-                <p style="font-size: 10px; margin-top: 5px;">Santa Maria de las Cumbres</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=4565%2BC3+Cancún+Quintana+Roo" target="_blank" style="text-decoration: none; font-size: 9px; color: var(--primary); border: 1px solid var(--primary); padding: 3px 8px; border-radius: 4px; margin-top: 8px;">📍 Ver mapa</a>
+                <strong style="display:block; margin-top:5px;">Iglesia</strong>
+                <p style="font-size: 11px; margin-top: 5px;">Santa Maria de las Cumbres</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=4565%2BC3+Cancún+Quintana+Roo" target="_blank" class="btn-mapa" style="text-decoration:none; display:inline-block; margin-top:10px; font-size:10px; color:var(--primary); border:1px solid var(--primary); padding:5px 12px; border-radius:20px;">📍 VER MAPA</a>
             </div>
-            
             <div class="timeline-item">
                 <span>🏛️</span>
                 <p style="font-size: 11px; color: var(--accent);">18:00 HRS</p>
-                <strong>Civil</strong>
-                <p style="font-size: 10px; margin-top: 5px;">Wayak Salón</p>
-                <a href="https://maps.google.com/?cid=2972821807399919353&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" style="text-decoration: none; font-size: 10px; color: #8a7b6a; border: 1px solid #8a7b6a; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 5px;">📍 Wayak Salón</a>
+                <strong style="display:block; margin-top:5px;">Civil</strong>
+                <p style="font-size: 11px; margin-top: 5px;">Wayak Salón</p>
+                <a href="https://maps.google.com/?cid=2972821807399919353&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" style="text-decoration:none; display:inline-block; margin-top:10px; font-size:10px; color:var(--primary); border:1px solid var(--primary); padding:5px 12px; border-radius:20px;">📍 VER MAPA</a>
             </div>
         </div>
-
         <button onclick="abrirItinerario()" style="margin-top: 40px; padding: 15px 30px; border: 1px solid var(--primary); background: white; color: var(--primary); cursor: pointer; letter-spacing: 2px; text-transform: uppercase; font-size: 11px; transition: 0.3s;">VER ITINERARIO COMPLETO</button>
     </section>
 
@@ -361,9 +309,8 @@
                 <li><span>08:00 pm</span> <span>Corte de Pastel</span></li>
                 <li><span>08:20 pm</span> <span>¡Show de animación!</span></li>
                 <li><span>09:20 pm</span> <span>¡Se abre la pista!</span></li>
-                <li><span>09:30 pm</span> <span>Cabina de fotos (hasta 11:30 pm)</span></li>
+                <li><span>09:30 pm</span> <span>Cabina de fotos</span></li>
                 <li><span>10:00 pm</span> <span>¡Ramo y Boutoniere!</span></li>
-                <li><span>10:15 pm</span> <span>¡Continua la fiesta!</span></li>
                 <li><span>12:00 am</span> <span>Fin del Evento</span></li>
             </ul>
             <button onclick="cerrarItinerario()" style="margin-top: 30px; padding: 12px; width: 100%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 12px; letter-spacing: 1px;">CERRAR</button>
@@ -380,41 +327,40 @@
                 <div class="swiper-slide galeria-slide"><a href="Photo-2.jpg" data-fancybox="gallery"><img src="Photo-2.jpg" loading="lazy"></a></div>
                 <div class="swiper-slide galeria-slide"><a href="Photo-54.jpg" data-fancybox="gallery"><img src="Photo-54.jpg" loading="lazy"></a></div>
                 <div class="swiper-slide galeria-slide"><a href="Photo-62.jpg" data-fancybox="gallery"><img src="Photo-62.jpg" loading="lazy"></a></div>
-                <div class="swiper-slide galeria-slide"><a href="Photo-15.jpg" data-fancybox="gallery"><img src="Photo-15.jpg" loading="lazy"></a></div>
-                <div class="swiper-slide galeria-slide"><a href="Photo-44.jpg" data-fancybox="gallery"><img src="Photo-44.jpg" loading="lazy"></a></div>
-                <div class="swiper-slide galeria-slide"><a href="Photo-20.jpg" data-fancybox="gallery"><img src="Photo-20.jpg" loading="lazy"></a></div>
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination" style="bottom: 10px;"></div>
         </div>
     </section>
 
-<section class="section reveal" id="rsvp">
-    <h2>Confirmar Asistencia</h2>
-    <p style="font-size: 12px; margin-bottom: 20px;">Por favor, ayúdanos con tu confirmación</p>
-    <div class="divider"></div>
-    
-    <div class="rsvp-container">
-        <div id="countdown-container" style="margin-bottom: 20px; font-weight: bold; color: black;">
-            <p style="font-size: 14px; color: #666;">Tiempo restante para confirmar:</p>
-            <div id="timer" style="font-size: 20px;">Cargando contador...</div>
+    <section class="section reveal" id="rsvp">
+        <h2>Confirmar Asistencia</h2>
+        <p style="font-size: 12px; margin-bottom: 20px;">Por favor, ayúdanos con tu confirmación</p>
+        <div class="divider"></div>
+        
+        <div class="rsvp-container">
+            <div id="countdown-container" style="margin-bottom: 20px;">
+                <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Tiempo restante para confirmar:</p>
+                <div id="timer" style="font-size: 22px; font-weight: bold; color: var(--primary);">Cargando contador...</div>
+            </div>
+
+            <p id="rsvp-msg" style="font-size: 14px; color: #666; margin-bottom: 10px;">Presiona el botón para abrir el formulario de confirmación:</p>
+            
+            <a href="https://script.google.com/macros/s/AKfycbxNMh8ldMjsLzZPEnSGt3mkrQ751wjPXr97uBbBawK4NgkF1lG7gUzmtiarh_AD9GE9/exec" 
+               target="_blank" 
+               class="form-btn" 
+               id="rsvp-button">
+               Abrir Formulario de Confirmación
+            </a>
+            
+            <p id="deadline-message" style="display: none; color: #d9534f; font-weight: bold; font-size: 16px; margin-top: 20px;">
+                El plazo para confirmar ha finalizado.
+            </p>
         </div>
+    </section>
 
-        <p id="rsvp-msg" style="font-size: 14px; color: #666; margin-bottom: 10px;">Presiona el botón para abrir el formulario de confirmación:</p>
-        
-        <a href="https://script.google.com/macros/s/AKfycbxNMh8ldMjsLzZPEnSGt3mkrQ751wjPXr97uBbBawK4NgkF1lG7gUzmtiarh_AD9GE9/exec" 
-           target="_blank" 
-           class="form-btn" 
-           id="rsvp-button">
-           Abrir Formulario de Confirmación
-        </a>
-        
-        <p id="deadline-message" style="display: none; color: black; font-weight: bold;">
-            El plazo para confirmar ha finalizado.
-        </p>
+    <div class="music-bubble" id="musicBtn" onclick="toggleMusic()">
+        <i class="fa-solid fa-music"></i>
     </div>
-</section>
-
-    <div class="music-bubble" id="musicBtn" onclick="toggleMusic()">♪</div>
     <audio id="bgMusic" loop>
         <source src="Our_Lunar_Vow.mp3" type="audio/mpeg">
     </audio>
@@ -425,6 +371,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 
     <script>
+        // FUNCIÓN INICIAR BODA (Tu original)
         function iniciarBoda() {
             const audio = document.getElementById('bgMusic');
             audio.play().catch(() => console.log("Audio espera clic"));
@@ -446,11 +393,16 @@
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicBtn');
-            if (music.paused) { music.play(); btn.innerText = 'II'; } 
-            else { music.pause(); btn.innerText = '♪'; }
+            if (music.paused) { 
+                music.play(); 
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>'; 
+            } else { 
+                music.pause(); 
+                btn.innerHTML = '<i class="fa-solid fa-music"></i>'; 
+            }
         }
 
-        // Countdown
+        // COUNTDOWN BODA (Tu original)
         const fechaBoda = new Date("July 25, 2026 17:00:00").getTime();
         setInterval(() => {
             const ahora = new Date().getTime();
@@ -463,38 +415,29 @@
             }
         }, 1000);
 
-        // Configura la fecha límite: 1 de Julio de 2026 a las 00:00:00
-    const deadline = new Date("July 1, 2026 00:00:00").getTime();
+        // LÓGICA RSVP - FECHA LÍMITE (Tu original intacta)
+        const deadline = new Date("July 1, 2026 00:00:00").getTime();
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = deadline - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const x = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = deadline - now;
+            document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-        // Cálculos de tiempo para días, horas, minutos y segundos
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "PLAZO CERRADO";
+                document.getElementById("rsvp-button").style.display = "none";
+                document.getElementById("rsvp-msg").style.display = "none";
+                document.getElementById("countdown-container").style.display = "none";
+                document.getElementById("deadline-message").style.display = "block";
+            }
+        }, 1000);
 
-        // Mostramos el resultado en el elemento con id="timer"
-        document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
-
-        // Si la cuenta regresiva termina
-        if (distance < 0) {
-            clearInterval(x);
-            // Ocultar elementos
-            document.getElementById("timer").innerHTML = "PLAZO CERRADO";
-            document.getElementById("rsvp-button").style.display = "none";
-            document.getElementById("rsvp-msg").style.display = "none";
-            document.getElementById("countdown-container").style.display = "none";
-            
-            // Mostrar mensaje de finalización
-            document.getElementById("deadline-message").style.display = "block";
-        }
-    }, 1000);
-
-        // Funciones Modales
+        // MODALES (Tus funciones originales)
         function abrirBurbuja() { document.getElementById('burbujaVestimenta').style.display = 'flex'; }
         function cerrarBurbuja() { document.getElementById('burbujaVestimenta').style.display = 'none'; }
         function cerrarBurbujaExterno(e) { if(e.target.id === 'burbujaVestimenta') cerrarBurbuja(); }
@@ -503,6 +446,7 @@
         function cerrarItinerario() { document.getElementById('modalItinerario').style.display = 'none'; }
         function cerrarItinerarioExterno(e) { if(e.target.id === 'modalItinerario') cerrarItinerario(); }
 
+        // REVEAL ANIMATION
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
